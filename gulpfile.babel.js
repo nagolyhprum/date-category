@@ -29,14 +29,13 @@ const build = () => npm('parcel', 'build', '--no-source-maps', 'src/index.js')
 const TWO_YEARS = (365 * 2)
 
 const demo = cb => {
-  const now = new Date()
+  const from = new Date(2018, 5, 15)
   let last = "???"
   for(var i = -TWO_YEARS; i < TWO_YEARS; i++) {
-    const date = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i)
-    const category = dateCategory(date)
+    const date = new Date(from.getFullYear(), from.getMonth(), from.getDate() + i)
+    const category = dateCategory(date, from)
     if(category !== last) {
-      console.log(category)
-      console.log(date)
+      console.log(category, date)
       last = category
     }
   }
