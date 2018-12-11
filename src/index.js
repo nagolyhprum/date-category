@@ -56,4 +56,7 @@ export default (test, from = getToday()) => {
   if (test.getMonth() === from.getMonth()) {
     return 'this month'
   }
+  if (test.getMonth() - 1 === from.getMonth()) {
+    return 'next month'
+  }
 }

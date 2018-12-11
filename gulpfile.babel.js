@@ -30,11 +30,11 @@ const TWO_YEARS = (365 * 2)
 
 const demo = cb => {
   const from = new Date(2018, 5, 15)
-  let last = "???"
-  for(var i = -TWO_YEARS; i < TWO_YEARS; i++) {
+  let last = '???'
+  for (var i = -TWO_YEARS; i < TWO_YEARS; i++) {
     const date = new Date(from.getFullYear(), from.getMonth(), from.getDate() + i)
     const category = dateCategory(date, from)
-    if(category !== last) {
+    if (category !== last) {
       console.log(category, date)
       last = category
     }
