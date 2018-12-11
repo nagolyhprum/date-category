@@ -53,6 +53,9 @@ export default (test, from = getToday()) => {
     }
     return 'next week'
   }
+  if (test.getFullYear() - from.getFullYear() >= 2) {
+    return 'later'
+  }
   if (test.getFullYear() - 1 === from.getFullYear()) {
     return 'next year'
   }
