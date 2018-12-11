@@ -48,6 +48,6 @@ describe('date category', () => {
   })
   it('returns this year', () => {
     const from = new Date(2018, 5, 15)
-    expect(dateCategory(new Date(from.getFullYear(), from.getMonth() + 2, from.getDate()), from)).toBe('next year')
+    expect(dateCategory(new Date(from.getFullYear(), from.getMonth() + 2, from.getDate()), from)).toBe('this year')
   })
 })
