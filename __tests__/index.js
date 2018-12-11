@@ -15,18 +15,19 @@ describe('date category', () => {
     expect(dateCategory(yesterday)).toBe('yesterday')
   })
   it('returns this week', () => {
-    const from = new Date('2018-12-10')
-    expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 2), from)).toBe('this week')
-    expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 3), from)).toBe('this week')
-    expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 4), from)).toBe('this week')
+    const from = new Date(2018, 11, 10)
+    for (let i = 0; i < 3; i++) {
+      expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 2 + i), from)).toBe('this week')
+    }
   })
   it('returns this weekend', () => {
-    const from = new Date('2018-12-10')
-    expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 5), from)).toBe('this weekend')
-    expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 6), from)).toBe('this weekend')
+    const from = new Date(2018, 11, 10)
+    for (let i = 0; i < 2; i++) {
+      expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 5 + i), from)).toBe('this weekend')
+    }
   })
   it('returns next week', () => {
-    const from = new Date('2018-12-10')
+    const from = new Date(2018, 11, 10)
     for (let i = 0; i < 5; i++) {
       expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 7 + i), from)).toBe('next week')
     }

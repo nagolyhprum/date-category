@@ -12,21 +12,24 @@ const match = (a, b) => {
 
 const ONE_DAY = (1000 * 60 * 60 * 24)
 
+const getDay = date => (date.getDay() + 6) % 7 // WEEK STARTS ON MONDAY
+
 const isThisWeek = (test, from) => {
-  const day = (from.getDay() + 1) % 7 // WEEK STARTS ON MONDAY
+  const day = getDay(from)
   const time = (7 - day) * ONE_DAY
   const diff = test - from
   return diff > 0 && diff < time
 }
 
-const getToday = () => {
-  const today = new Date()
-  today.setMilliseconds(0)
-  today.setSeconds(0)
-  today.setMinutes(0)
-  today.setHours(0)
-  return today
+const isNextWeek = (test, from) => {
+  const day = getDay(from)
+  const nextWeek = new Date(from.getFullYear(), from.getMonth(), from.getDate() + 7 - day)
+  const time = 7 * ONE_DAY
+  const diff = test - nextWeek
+  return diff > 0 && diff < time
 }
+
+const getToday = () => add(new Date())
 
 export default (test, from = getToday()) => {
   if (match(test, from)) {
@@ -39,9 +42,12 @@ export default (test, from = getToday()) => {
     return 'tomorrow'
   }
   if (isThisWeek(test, from)) {
-    if ([5, 6].includes(test.getDay())) {
+    if ([6, 0].includes(test.getDay())) {
       return 'this weekend'
     }
     return 'this week'
+  }
+  if (isNextWeek(test, from)) {
+    return 'next week'
   }
 }
