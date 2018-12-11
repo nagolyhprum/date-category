@@ -54,4 +54,8 @@ describe('date category', () => {
     const from = new Date(2018, 5, 15)
     expect(dateCategory(new Date(from.getFullYear() + 1, from.getMonth(), from.getDate()), from)).toBe('next year')
   })
+  it('returns later', () => {
+    const from = new Date(2018, 5, 15)
+    expect(dateCategory(new Date(from.getFullYear() + 2, from.getMonth(), from.getDate()), from)).toBe('later')
+  })
 })
