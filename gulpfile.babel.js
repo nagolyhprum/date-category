@@ -1,40 +1,50 @@
 import gulp from 'gulp'
-
 import cp from 'child_process'
 
-function npm (cmd, ...args) {
-  return program('npm', 'run', cmd, '--', ...args)
-}
+import dateCategory from './src/index.js'
 
-function log (_) {
+const npm = (cmd, ...args) => program('npm', 'run', cmd, '--', ...args)
+
+const log = (_) => {
   process.stdout.write(_)
   return _
 }
 
-function program (...args) {
-  return new Promise((resolve, reject) => {
-    console.log(...args)
-    const program = cp.spawn(args[0], args.slice(1))
-    const out = []
-    const err = []
-    program.stdout.on('data', it => out.push(log(it.toString())))
-    program.stderr.on('data', it => err.push(log(it.toString())))
-    program.on('close', code => code ? reject(new Error(err.join(''))) : resolve(out.join('')))
-  })
-}
+const program = (...args) => new Promise((resolve, reject) => {
+  console.log(...args)
+  const program = cp.spawn(args[0], args.slice(1))
+  const out = []
+  const err = []
+  program.stdout.on('data', it => out.push(log(it.toString())))
+  program.stderr.on('data', it => err.push(log(it.toString())))
+  program.on('close', code => code ? reject(new Error(err.join(''))) : resolve(out.join('')))
+})
 
-function standardFix () {
-  return npm('standard', '--fix')
-}
+const standardFix = () => npm('standard', '--fix')
 
-function test () {
-  return npm('jest')
-}
+const test = () => npm('jest')
 
-function build () {
-  return npm('parcel', 'build', '--no-source-maps', 'src/index.js')
+const build = () => npm('parcel', 'build', '--no-source-maps', 'src/index.js')
+
+const TWO_YEARS = (365 * 2)
+
+const demo = cb => {
+  const now = new Date()
+  let last = "???"
+  for(var i = -TWO_YEARS; i < TWO_YEARS; i++) {
+    const date = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i)
+    const category = dateCategory(date)
+    if(category !== last) {
+      console.log(category)
+      console.log(date)
+      last = category
+    }
+  }
+  console.log('DEMO')
+  cb()
 }
 
 gulp.task('build', build)
 gulp.task('fix', standardFix)
 gulp.task('test', test)
+gulp.task('demo', demo)

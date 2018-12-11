@@ -53,7 +53,7 @@ export default (test, from = getToday()) => {
     }
     return 'next week'
   }
-  if(test.getMonth() === from.getMonth()) {
+  if (test.getMonth() === from.getMonth()) {
     return 'this month'
   }
 }
