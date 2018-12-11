@@ -1,10 +1,23 @@
-const ONE_DAY = (1000 * 60 * 60 * 24)
+const add = (date, options = {}) => {
+  const mod = new Date(date.getFullYear(), date.getMonth(), date.getDate())
+  if (options.date) {
+    mod.setDate(mod.getDate() + options.date)
+  }
+  return mod
+}
 
-export default (to, from = new Date()) => {
-  if(to.getDate() === from.getDate() && to.getMonth() === from.getMonth() && to.getFullYear() === from.getFullYear()) {
+const match = (a, b) => {
+  return a.getDate() === b.getDate() && a.getMonth() === b.getMonth() && a.getFullYear() === b.getFullYear()
+}
+
+export default (test, from = new Date()) => {
+  if (match(test, from)) {
     return 'today'
   }
-  if((to - from) < ONE_DAY) {
+  if (match(add(test, { date: 1 }), from)) {
+    return 'yesterday'
+  }
+  if (match(add(test, { date: -1 }), from)) {
     return 'tomorrow'
   }
 }

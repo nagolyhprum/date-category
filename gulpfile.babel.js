@@ -2,7 +2,7 @@ import gulp from 'gulp'
 
 import cp from 'child_process'
 
-function npm(cmd, ...args) {
+function npm (cmd, ...args) {
   return program('npm', 'run', cmd, '--', ...args)
 }
 
@@ -23,20 +23,18 @@ function program (...args) {
   })
 }
 
-function standardFix() {
+function standardFix () {
   return npm('standard', '--fix')
 }
 
-function test() {
+function test () {
   return npm('jest')
 }
 
-function build() {
+function build () {
   return npm('parcel', 'build', '--no-source-maps', 'src/index.js')
 }
-
 
 gulp.task('build', build)
 gulp.task('fix', standardFix)
 gulp.task('test', test)
-
