@@ -38,4 +38,8 @@ describe('date category', () => {
       expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 12 + i), from)).toBe('next weekend')
     }
   })
+  it('returns this month', () => {
+    const from = new Date(2018, 11, 10)
+    expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 14), from)).toBe('this month')
+  })
 })
