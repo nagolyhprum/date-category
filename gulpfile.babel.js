@@ -2,6 +2,10 @@ import gulp from 'gulp'
 
 import cp from 'child_process'
 
+function npm(cmd, ...args) {
+  return program('npm', 'run', cmd, '--', ...args)
+}
+
 function log (_) {
   process.stdout.write(_)
   return _
@@ -19,6 +23,20 @@ function program (...args) {
   })
 }
 
-gulp.task('fix', () => program('npm', 'run', 'standard', '--', '--fix'))
+function standardFix() {
+  return npm('standard', '--fix')
+}
 
-gulp.task('test', () => program('npm', 'run', 'jest'))
+function test() {
+  return npm('jest')
+}
+
+function build() {
+  return npm('parcel', 'build', '--no-source-maps', 'src/index.js')
+}
+
+
+gulp.task('build', build)
+gulp.task('fix', standardFix)
+gulp.task('test', test)
+
