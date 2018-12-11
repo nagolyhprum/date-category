@@ -39,6 +39,9 @@ export default (test, from = getToday()) => {
     return 'tomorrow'
   }
   if (isThisWeek(test, from)) {
+    if ([5, 6].includes(test.getDay())) {
+      return 'this weekend'
+    }
     return 'this week'
   }
 }

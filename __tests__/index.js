@@ -22,7 +22,7 @@ describe('date category', () => {
   })
   it('this weekend', () => {
     const from = new Date('2018-12-10')
-    expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 4), from)).toBe('this weekend')
     expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 5), from)).toBe('this weekend')
+    expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 6), from)).toBe('this weekend')
   })
 })
