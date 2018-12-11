@@ -11,4 +11,11 @@ describe('date category', () => {
 
     expect(dateCategory(tomorrow)).toBe('tomorrow')
   })
+  it('returns yesterday', () => {
+
+    const today = new Date()
+    const yesterday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1)
+
+    expect(dateCategory(yesterday)).toBe('yesterday')
+  })
 })
