@@ -18,7 +18,7 @@ const isThisWeek = (test, from) => {
   const day = getDay(from)
   const time = (7 - day) * ONE_DAY
   const diff = test - from
-  return diff > 0 && diff < time
+  return diff >= 0 && diff < time
 }
 
 const isNextWeek = (test, from) => {
@@ -26,7 +26,7 @@ const isNextWeek = (test, from) => {
   const nextWeek = new Date(from.getFullYear(), from.getMonth(), from.getDate() + 7 - day)
   const time = 7 * ONE_DAY
   const diff = test - nextWeek
-  return diff > 0 && diff < time
+  return diff >= 0 && diff < time
 }
 
 const getToday = () => add(new Date())
@@ -48,6 +48,9 @@ export default (test, from = getToday()) => {
     return 'this week'
   }
   if (isNextWeek(test, from)) {
+    if ([6, 0].includes(test.getDay())) {
+      return 'next weekend'
+    }
     return 'next week'
   }
 }
