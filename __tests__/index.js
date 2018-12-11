@@ -15,9 +15,9 @@ describe('date category', () => {
     expect(dateCategory(yesterday)).toBe('yesterday')
   })
   it('this week', () => {
-    const from = new Date("2018-12-10")
-    expect(dateCategory(new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2))).toBe('this week')
-    expect(dateCategory(new Date(today.getFullYear(), today.getMonth(), today.getDate() + 3))).toBe('this week')
-    expect(dateCategory(new Date(today.getFullYear(), today.getMonth(), today.getDate() + 4))).toBe('this week')
+    const from = new Date('2018-12-10')
+    expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 2), from)).toBe('this week')
+    expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 3), from)).toBe('this week')
+    expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 4), from)).toBe('this week')
   })
 })
