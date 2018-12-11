@@ -14,15 +14,21 @@ describe('date category', () => {
     const yesterday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1)
     expect(dateCategory(yesterday)).toBe('yesterday')
   })
-  it('this week', () => {
+  it('returns this week', () => {
     const from = new Date('2018-12-10')
     expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 2), from)).toBe('this week')
     expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 3), from)).toBe('this week')
     expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 4), from)).toBe('this week')
   })
-  it('this weekend', () => {
+  it('returns this weekend', () => {
     const from = new Date('2018-12-10')
     expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 5), from)).toBe('this weekend')
     expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 6), from)).toBe('this weekend')
+  })
+  it('returns next week', () => {
+    const from = new Date('2018-12-10')
+    for (let i = 0; i < 5; i++) {
+      expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 7 + i), from)).toBe('next week')
+    }
   })
 })
