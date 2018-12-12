@@ -35,7 +35,7 @@ const demo = cb => {
     const date = new Date(from.getFullYear(), from.getMonth(), from.getDate() + i)
     const category = dateCategory(date, from)
     if (category !== last) {
-      console.log(category, date)
+      console.log(category, date.toDateString())
       last = category
     }
   }
