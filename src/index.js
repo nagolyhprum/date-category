@@ -71,6 +71,9 @@ export default (test, from = getToday()) => {
     }
     return 'last week'
   }
+  if (test.getFullYear() - from.getFullYear() <= -2) {
+    return 'earlier'
+  }
   if (test.getFullYear() - from.getFullYear() >= 2) {
     return 'later'
   }
