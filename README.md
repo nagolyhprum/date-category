@@ -5,7 +5,7 @@ Utility for categorizing dates into range names
 
 `npm i --save date-category`
 
-Example Usage:
+# Example
 
 ```js
 import dateCategory from 'date-category'
@@ -20,7 +20,7 @@ console.log(dateCategory(tomorrow)) //outputs "tomorrow"
 console.log(dateCategory(today, yesterday)) //outputs "tomorrow"
 ```
 
-All categories available:
+# Categories available
 
 * earlier - Over 2 years ago
 * last year
