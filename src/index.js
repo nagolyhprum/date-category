@@ -62,6 +62,9 @@ export default (test, from = getToday()) => {
     return 'next week'
   }  
   if(isLastWeek(test, from)) {
+    if ([6, 0].includes(test.getDay())) {
+      return 'last weekend'
+    }
     return 'last week'
   }
   if (test.getFullYear() - from.getFullYear() >= 2) {
