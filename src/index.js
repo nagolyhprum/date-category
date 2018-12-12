@@ -90,6 +90,9 @@ export default (test, from = getToday()) => {
     return 'last month'
   }
   if (test.getFullYear() === from.getFullYear()) {
+    if(test < from) {
+      return "earlier this year"
+    }
     return 'this year'
   }
 }
