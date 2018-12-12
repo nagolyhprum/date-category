@@ -1,6 +1,10 @@
 # date-category
 Utility for categorizing dates into range names
 
+# Installation
+
+`npm i --save date-category`
+
 Example Usage:
 
 ```js
