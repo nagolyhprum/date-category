@@ -15,12 +15,14 @@ const ONE_WEEK = 7 * ONE_DAY
 
 const getDay = date => (date.getDay() + 6) % 7 // WEEK STARTS ON MONDAY
 
+const getMonth = date => date.getMonth() + date.getFullYear() * 12
+
 const getWeek = (date, diff = 0) => {
   const day = getDay(date)
   return new Date(date.getFullYear(), date.getMonth(), date.getDate() + 7 * diff - day)
 }
 
-const isThisWeek = (test, from) => {  
+const isThisWeek = (test, from) => {
   const thisWeek = getWeek(from)
   const diff = test - thisWeek
   return diff >= 0 && diff < ONE_WEEK
@@ -51,8 +53,8 @@ export default (test, from = getToday()) => {
     return 'tomorrow'
   }
   if (isThisWeek(test, from)) {
-    if(test < from) {
-      return "earlier this week"
+    if (test < from) {
+      return 'earlier this week'
     }
     if ([6, 0].includes(test.getDay())) {
       return 'this weekend'
@@ -64,12 +66,24 @@ export default (test, from = getToday()) => {
       return 'next weekend'
     }
     return 'next week'
-  }  
-  if(isLastWeek(test, from)) {
+  }
+  if (isLastWeek(test, from)) {
     if ([6, 0].includes(test.getDay())) {
       return 'last weekend'
     }
     return 'last week'
+  }
+  if (getMonth(test) === getMonth(from)) {
+    if (test < from) {
+      return 'earlier this month'
+    }
+    return 'this month'
+  }
+  if (getMonth(test) - 1 === getMonth(from)) {
+    return 'next month'
+  }
+  if (getMonth(test) + 1 === getMonth(from)) {
+    return 'last month'
   }
   if (test.getFullYear() - from.getFullYear() <= -2) {
     return 'earlier'
@@ -83,21 +97,9 @@ export default (test, from = getToday()) => {
   if (test.getFullYear() + 1 === from.getFullYear()) {
     return 'last year'
   }
-  if (test.getMonth() === from.getMonth()) {
-    if(test < from) {
-      return "earlier this month"
-    }
-    return 'this month'
-  }
-  if (test.getMonth() - 1 === from.getMonth()) {
-    return 'next month'
-  }
-  if (test.getMonth() + 1 === from.getMonth()) {
-    return 'last month'
-  }
   if (test.getFullYear() === from.getFullYear()) {
-    if(test < from) {
-      return "earlier this year"
+    if (test < from) {
+      return 'earlier this year'
     }
     return 'this year'
   }

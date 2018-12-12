@@ -29,7 +29,7 @@ const build = () => npm('parcel', 'build', '--no-source-maps', 'src/index.js')
 const TWO_YEARS = (365 * 2)
 
 const demo = cb => {
-  const from = new Date(2018, 5, 13) //WED
+  const from = new Date(2018, 5, 13) // WED
   let last = '???'
   for (var i = -TWO_YEARS; i < TWO_YEARS; i++) {
     const date = new Date(from.getFullYear(), from.getMonth(), from.getDate() + i)
