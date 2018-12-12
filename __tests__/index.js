@@ -94,4 +94,8 @@ describe('date category', () => {
     const from = new Date(2018, 11, 31)
     expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() + 15), from)).toBe('next month')
   })
+  it('returns last month when going from jan to dec', () => {
+    const from = new Date(2018, 0, 1)
+    expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() - 15), from)).toBe('last month')
+  })
 })
