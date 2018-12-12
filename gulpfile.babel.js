@@ -22,9 +22,15 @@ const program = (...args) => new Promise((resolve, reject) => {
 
 const standardFix = () => npm('standard', '--fix')
 
+const standard = () => npm('standard')
+
 const test = () => npm('jest')
 
 const build = () => npm('parcel', 'build', '--no-source-maps', 'src/index.js')
+
+const patch = () => program('npm', 'version', 'patch')
+
+const deploy = () => program('npm', 'publish')
 
 const TWO_YEARS = (365 * 2)
 
@@ -47,3 +53,4 @@ gulp.task('build', build)
 gulp.task('fix', standardFix)
 gulp.task('test', test)
 gulp.task('demo', demo)
+gulp.task('deploy', gulp.series(standard, test, patch, deploy))

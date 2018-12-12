@@ -1,8 +1,8 @@
 {
   "name": "date-category",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.0",
+  "description": "Utility for categorizing dates into range names",
+  "main": "dist/index.js",
   "scripts": {
     "jest": "jest",
     "standard": "standard",
@@ -22,7 +22,7 @@
     "type": "git",
     "url": "git+https://github.com/nagolyhprum/date-category.git"
   },
-  "author": "",
+  "author": "Logan Murphy",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/nagolyhprum/date-category/issues"
