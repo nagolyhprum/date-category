@@ -62,4 +62,8 @@ describe('date category', () => {
     const from = new Date(2018, 5, 15)
     expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() - 7), from)).toBe('last week')
   })
+  it('returns last weekend', () => {
+    const from = new Date(2018, 5, 15)
+    expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() - 6), from)).toBe('last weekend')
+  })
 })
