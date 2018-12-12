@@ -29,6 +29,14 @@ const isNextWeek = (test, from) => {
   return diff >= 0 && diff < time
 }
 
+const isLastWeek = (test, from) => {
+  const day = getDay(from)
+  const lastWeek = new Date(from.getFullYear(), from.getMonth(), from.getDate() - 7 - day)
+  const time = 7 * ONE_DAY
+  const diff = test - lastWeek
+  return diff >= 0 && diff < time
+}
+
 const getToday = () => add(new Date())
 
 export default (test, from = getToday()) => {
@@ -52,6 +60,9 @@ export default (test, from = getToday()) => {
       return 'next weekend'
     }
     return 'next week'
+  }  
+  if(isLastWeek(test, from)) {
+    return 'last week'
   }
   if (test.getFullYear() - from.getFullYear() >= 2) {
     return 'later'
