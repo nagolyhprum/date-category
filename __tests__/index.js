@@ -98,4 +98,10 @@ describe('date category', () => {
     const from = new Date(2018, 0, 1)
     expect(dateCategory(new Date(from.getFullYear(), from.getMonth(), from.getDate() - 15), from)).toBe('last month')
   })
+  it("supports options", () => {
+    const today = new Date()
+    expect(dateCategory(today, {
+      from : today
+    })).toBe('today')    
+  })
 })
