@@ -1,3 +1,5 @@
+import languages from './languages'
+
 const add = (date, options = {}) => {
   const mod = new Date(date.getFullYear(), date.getMonth(), date.getDate())
   if (options.date) {
@@ -49,10 +51,18 @@ const getFrom = options => {
   return options.from || getToday()
 }
 
+const getLanguage = options => {
+  if (options instanceof Date) {
+    return languages.en
+  }
+  return languages[options.language] || languages.en
+}
+
 export default (test, options = getToday()) => {
   const from = getFrom(options)
+  const language = getLanguage(options)
   if (match(test, from)) {
-    return 'today'
+    return language.today
   }
   if (match(add(test, { date: 1 }), from)) {
     return 'yesterday'
