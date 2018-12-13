@@ -42,7 +42,15 @@ const isLastWeek = (test, from) => {
 
 const getToday = () => add(new Date())
 
-export default (test, from = getToday()) => {
+const getFrom = options => {
+  if (options instanceof Date) {
+    return options
+  }
+  return options.from || getToday()
+}
+
+export default (test, options = getToday()) => {
+  const from = getFrom(options)
   if (match(test, from)) {
     return 'today'
   }
