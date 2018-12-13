@@ -107,7 +107,7 @@ describe('date category', () => {
   it('supports spanish', () => {
     const today = new Date()
     expect(dateCategory(today, {
-      language : "es"
+      language: 'es'
     })).toBe('hoy')
   })
 })
