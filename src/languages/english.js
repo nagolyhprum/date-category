@@ -1,3 +1,3 @@
 export default {
-  today : "today"
+  today: 'today'
 }

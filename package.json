@@ -1,6 +1,6 @@
 {
   "name": "date-category",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Utility for categorizing dates into range names",
   "main": "dist/index.js",
   "scripts": {
@@ -8,6 +8,9 @@
     "standard": "standard",
     "parcel": "parcel"
   },
+  "files": [
+    "dist/index.js"
+  ],
   "standard": {
     "globals": [
       "describe",
