@@ -8,6 +8,9 @@
     "standard": "standard",
     "parcel": "parcel"
   },
+  "files": [
+    "dist/index.js"
+  ],
   "standard": {
     "globals": [
       "describe",
