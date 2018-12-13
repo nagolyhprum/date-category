@@ -9,6 +9,7 @@ Utility for categorizing dates into range names
 
 ```js
 import dateCategory from 'date-category'
+// const dateCategory = require('date-category').default
 const today = new Date()
 const yesterday = new Date(Date.now() - (1000 * 60 * 60 * 24))
 const tomorrow = new Date(Date.now() + (1000 * 60 * 60 * 24))
