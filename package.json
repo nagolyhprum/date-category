@@ -1,6 +1,6 @@
 {
   "name": "date-category",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Utility for categorizing dates into range names",
   "main": "dist/index.js",
   "scripts": {
@@ -36,7 +36,7 @@
     "babel-preset-env": "^1.7.0",
     "gulp": "^4.0.0",
     "jest": "^23.6.0",
-    "parcel-bundler": "^1.10.3",
+    "parcel-bundler": "^1.12.4",
     "standard": "^12.0.1"
   }
 }
