@@ -58,6 +58,32 @@ const getLanguage = options => {
   return languages[options.language] || languages.en
 }
 
+export const getCategories = (language = 'en') => {
+  const lang = getLanguage(language)
+  return [
+    lang.before,
+    lang.last.year,
+    lang.earlier.this.year,
+    lang.last.month,
+    lang.earlier.this.month,
+    lang.last.week,
+    lang.last.weekend,
+    lang.earlier.this.week,
+    lang.yesterday,
+    lang.today,
+    lang.tomorrow,
+    lang.this.week,
+    lang.this.weekend,
+    lang.next.week,
+    lang.next.weekend,
+    lang.this.month,
+    lang.next.month,
+    lang.this.year,
+    lang.next.year,
+    lang.after
+  ]
+}
+
 export default (test, options = getToday()) => {
   const from = getFrom(options)
   const language = getLanguage(options)
@@ -65,60 +91,60 @@ export default (test, options = getToday()) => {
     return language.today
   }
   if (match(add(test, { date: 1 }), from)) {
-    return 'yesterday'
+    return language.yesterday
   }
   if (match(add(test, { date: -1 }), from)) {
-    return 'tomorrow'
+    return language.tomorrow
   }
   if (isThisWeek(test, from)) {
     if (test < from) {
-      return 'earlier this week'
+      return language.earlier.this.week
     }
     if ([6, 0].includes(test.getDay())) {
-      return 'this weekend'
+      return language.this.weekend
     }
-    return 'this week'
+    return language.this.week
   }
   if (isNextWeek(test, from)) {
     if ([6, 0].includes(test.getDay())) {
-      return 'next weekend'
+      return language.next.weekend
     }
-    return 'next week'
+    return language.next.week
   }
   if (isLastWeek(test, from)) {
     if ([6, 0].includes(test.getDay())) {
-      return 'last weekend'
+      return language.last.weekend
     }
-    return 'last week'
+    return language.last.week
   }
   if (getMonth(test) === getMonth(from)) {
     if (test < from) {
-      return 'earlier this month'
+      return language.earlier.this.month
     }
-    return 'this month'
+    return language.this.month
   }
   if (getMonth(test) - 1 === getMonth(from)) {
-    return 'next month'
+    return language.next.month
   }
   if (getMonth(test) + 1 === getMonth(from)) {
-    return 'last month'
+    return language.last.month
   }
   if (test.getFullYear() - from.getFullYear() <= -2) {
-    return 'earlier'
+    return language.before
   }
   if (test.getFullYear() - from.getFullYear() >= 2) {
-    return 'later'
+    return language.after
   }
   if (test.getFullYear() - 1 === from.getFullYear()) {
-    return 'next year'
+    return language.next.year
   }
   if (test.getFullYear() + 1 === from.getFullYear()) {
-    return 'last year'
+    return language.last.year
   }
   if (test.getFullYear() === from.getFullYear()) {
     if (test < from) {
-      return 'earlier this year'
+      return language.earlier.this.year
     }
-    return 'this year'
+    return language.this.year
   }
 }

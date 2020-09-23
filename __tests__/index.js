@@ -1,6 +1,32 @@
-import dateCategory from '../src/index.js'
+import dateCategory, {
+  getCategories
+} from '../src/index.js'
 
 describe('date category', () => {
+  it('gets categories', () => {
+    expect(getCategories('en')).toEqual([
+      'earlier',
+      'last year',
+      'earlier this year',
+      'last month',
+      'earlier this month',
+      'last week',
+      'last weekend',
+      'earlier this week',
+      'yesterday',
+      'today',
+      'tomorrow',
+      'this week',
+      'this weekend',
+      'next week',
+      'next weekend',
+      'this month',
+      'next month',
+      'this year',
+      'next year',
+      'later'
+    ])
+  })
   it('returns today', () => {
     expect(dateCategory(new Date())).toBe('today')
   })
